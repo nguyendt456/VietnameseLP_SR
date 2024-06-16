@@ -1,0 +1,15 @@
+test_dataset:
+  path: dataset/test/
+  shuffle: false
+  num_workers: 1
+  pin_memory: true
+  batch_size: 1
+  degradation: bicubic
+  scale: 2
+testing:
+  mode: model
+  model: MultiPathResidualNetwork
+  model_folder: trained_models/
+  output_model_file: mprnet_final_model
+seed: 1507
+image_channels: 3

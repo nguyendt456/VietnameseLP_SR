@@ -1,0 +1,48 @@
+train_dataset:
+  path: dataset/train/
+  shuffle: true
+  num_workers: 1
+  pin_memory: true
+  batch_size: 64
+  augment: false
+  patch_size: 16
+  scales:
+    - 2
+  degradation: bicubic
+val_dataset:
+  # path: data/valid/
+  path: dataset/test/
+  shuffle: false
+  num_workers: 1
+  pin_memory: true
+  batch_size: 1
+  degradation: bicubic
+  scale: 2
+  n_images_to_use:
+    - 18
+    # - 24
+    # - 27
+    # - 92
+    # - 45
+image_channels: 3
+n_features: 64
+seed: 1507
+model: MultiPathResidualNetwork
+loss: L1Loss
+optimizer:
+  name: AdamP
+  learning_rate: 0.001
+  halving_steps: 2000 # 400000
+  min_learning_rate: 0.0001
+  betas:
+    - 0.9
+    - 0.999
+  eps: 0.00000001
+clip: 10 # null
+model_folder: trained_models/
+output_model_file: mprnet_final_model
+checkpoint_every: 1000
+load_checkpoint: true
+checkpoint_file: mprnet_latest_checkpoint
+restart_steps_count: false
+max_training_steps: 10000 # 600000
